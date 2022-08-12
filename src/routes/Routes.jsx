@@ -4,7 +4,7 @@ import User from '../pages/User'
 
 const Paths = () => {
   return (
-    <section className='container-fluid'>
+    <section>
       <Routes>
         <Route path='/WADMarket' element={<Outlet />}>
           <Route path='' element={<Navigate to='/WADMarket/products' />} />
