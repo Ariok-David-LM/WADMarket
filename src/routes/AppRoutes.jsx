@@ -6,9 +6,9 @@ const AppRoutes = ({ items, loading }) => {
   return (
     <>
       <Routes>
-        <Route index element={<Products items={items} loading={loading} />} />
+        <Route index element={<Products />} />
         <Route path=':idProduct' element={<Product />} />
-        <Route path='*' element={<h1>No existen mas paginas sobre este producto</h1>} />
+        <Route path='*' element={<h1>No existen mas paginas sobre este producto.</h1>} />
       </Routes>
     </>
   )

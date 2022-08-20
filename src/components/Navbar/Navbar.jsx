@@ -1,7 +1,19 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { usaProductContext } from '../../contexts/ProductContext'
+import { useRef } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
-const Navbar = ({ handleSubmit, searchRef }) => {
+const Navbar = () => {
+  // Constantes necesarias
+  const context = usaProductContext()
+  const searchRef = useRef(null)
+  const navigate = useNavigate()
+
+  // Envia los datos de busqueda al contexto
+  const handleSubmit = async (e) => {
+    context.setSearch(searchRef.current.value)
+    navigate('/WADMarket/products/')
+  }
+
   return (
     <nav className='navbar navbar-expand-sm navbar-dark bg-primary'>
       <div className='container-fluid d-flex'>

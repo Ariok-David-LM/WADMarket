@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react'
 import { getItems } from '../services/getItems'
 
-const useGetItems = (search) => {
+const useGetItems = () => {
   const [dataState, setDataState] = useState([])
   const [loading, setLoading] = useState(true)
 
   const getData = async () => {
     const { data } = await getItems()
     if (data.Response !== 'False') {
+      /*
       const newData = []
       data.forEach(element => {
         if (element.product_name.toLowerCase().search(search.toLowerCase()) !== -1) {
           newData.push(element)
         }
-      })
-      setDataState(newData)
+      }) */
+      setDataState(data)
     } else {
       setDataState([])
     }
@@ -24,7 +25,7 @@ const useGetItems = (search) => {
   useEffect(() => {
     setLoading(true)
     getData()
-  }, [search])
+  }, [])
 
   return { dataState, loading }
 }
