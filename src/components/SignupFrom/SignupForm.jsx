@@ -1,4 +1,30 @@
+import useForm from '../../hooks/useForm'
+import { RegisterUser } from '../../services/UserServices'
+import { useNavigate, Link } from 'react-router-dom'
+
 const SignupForm = () => {
+  const navigate = useNavigate()
+
+  const sendData = async (data) => {
+    try {
+      const result = await RegisterUser(data)
+      if (result.status === 200) {
+        navigate('/WADMarket/products/')
+      }
+    } catch (error) {
+      alert('Ocurrió un error: ' + error.message)
+    }
+  }
+
+  const { input, handleInputChange, handleSubmit } = useForm(sendData, {
+    first_name: '',
+    last_name: '',
+    birth_date: '',
+    gender: 'Select a gender',
+    email: '',
+    password: ''
+  })
+
   return (
     <>
       <div className='container-fluid text-center fs-4'>Sign up to WADMarket</div>
@@ -10,6 +36,8 @@ const SignupForm = () => {
           <input
             type='text'
             name='first_name'
+            onChange={handleInputChange}
+            value={input.first_name}
             className='form-control'
             id='name'
             placeholder='Name'
@@ -22,6 +50,8 @@ const SignupForm = () => {
           <input
             type='text'
             name='last_name'
+            onChange={handleInputChange}
+            value={input.last_name}
             className='form-control'
             id='last-name'
             placeholder='Last Name'
@@ -36,6 +66,8 @@ const SignupForm = () => {
             className='form-control'
             id='birth'
             name='birth_date'
+            onChange={handleInputChange}
+            value={input.birth_date}
           />
         </div>
         <div className='mt-3'>
@@ -45,6 +77,8 @@ const SignupForm = () => {
           <select
             className='form-select'
             name='gender'
+            onChange={handleInputChange}
+            value={input.gender}
           >
             <option value='Select a gender' disabled>
               Select a gender
@@ -63,6 +97,8 @@ const SignupForm = () => {
             id='exampleFormControlInput1'
             placeholder='name@example.com'
             name='email'
+            onChange={handleInputChange}
+            value={input.email}
           />
         </div>
         <div className='mt-3'>
@@ -75,15 +111,18 @@ const SignupForm = () => {
               className='form-control'
               id='inputPassword'
               name='password'
+              onChange={handleInputChange}
+              value={input.password}
             />
           </div>
         </div>
         <div className='container-fluid mt-4 p-0'>
-          <button type='button' className='container-fluid btn btn-success'>
+          <button type='button' className='container-fluid btn btn-success' onClick={handleSubmit}>
             Sign Up
           </button>
         </div>
       </form>
+      <Link to='/WADMarket/user/signin'>Ya tengo una cuenta</Link>
     </>
   )
 }

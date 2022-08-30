@@ -5,14 +5,11 @@ const SesionCartContext = createContext()
 // #2 Creación del proveedor del contexto
 function SesionCartProvider (props) {
   const [cart, setCart] = useState([])
-  const [sesionStart, setSesionStart] = useState(false)
 
   // Tenemos que indicar en el Provider que DATOS debe proveer.
   const value = {
     cart,
-    setCart,
-    sesionStart,
-    setSesionStart
+    setCart
   }
 
   return (
