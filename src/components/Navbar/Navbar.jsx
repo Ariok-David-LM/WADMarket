@@ -1,10 +1,16 @@
 import { usaProductContext } from '../../contexts/ProductContext'
-import { useRef } from 'react'
+import { useRef, useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../contexts/Auth'
+import { usaSesionCartContext } from '../../contexts/SesionCartContext'
+import ButonsNoStarted from './NavbarComponents/ButonsNoStarted'
+import ButonsStarted from './NavbarComponents/ButonsStarted'
 
 const Navbar = () => {
   // Constantes necesarias
+  const { isAuth } = useContext(AuthContext)
   const context = usaProductContext()
+  const carritoItems = usaSesionCartContext()
   const searchRef = useRef(null)
   const navigate = useNavigate()
 
@@ -12,6 +18,16 @@ const Navbar = () => {
   const handleSubmit = async (e) => {
     context.setSearch(searchRef.current.value)
     navigate('/WADMarket/products/')
+  }
+
+  const [botonCarro, setBotonCarro] = useState(false)
+
+  const click = () => {
+    if (botonCarro === false) {
+      setBotonCarro(true)
+    } else {
+      setBotonCarro(false)
+    }
   }
 
   return (
@@ -29,12 +45,34 @@ const Navbar = () => {
         </div>
         <div className='d-flex justify-content-end container-fluid order-sm-3 order-2 col-sm-3 col-6'>
           <div>
-            <Link to='/WADMarket/user/signin'>
-              <div className='btn btn-dark fs-6 p-1 me-1'>Sign In</div>
-            </Link>
-            <Link to='/WADMarket/user/signup'>
-              <div className='btn btn-dark fs-6 p-1'>Sign Up</div>
-            </Link>
+            <button className='btn p-0 m-0 pe-2' type='button' id='dropdownMenuButton1' aria-expanded='false' onClick={click} style={{ border: 'none' }}>
+              <img src='/assets/img/shopping-basket.png' width={39} />
+            </button>
+            <ul className={`dropdown-menu dropdown-menu-end me-4 ${botonCarro ? 'show' : ''}`} style={{ right: '40px', top: '55px', maxHeight: '300px', overflow: 'auto' }}>
+              {carritoItems.cart.map((product) => (
+                <li key={product._id}>
+                  <div className='container-fluid d-flex flex-row justify-content-end bg-dark'>
+                    <div className='container-fluid'>
+                      {product.product_name}
+                    </div>
+                    <div className='ps-1'>
+                      {`$${product.price}`}
+                    </div>
+                    <div
+                      className='ps-1' onClick={() => {
+                        const totales = carritoItems.cart.filter((producto) => {
+                          return producto._id !== product._id
+                        })
+                        carritoItems.setCart(totales)
+                      }}
+                    >
+                      <img src='/assets/img/cross.png' alt='eliminar' width='20px' />
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            {isAuth ? <ButonsStarted admin={isAuth} /> : <ButonsNoStarted />}
           </div>
         </div>
       </div>

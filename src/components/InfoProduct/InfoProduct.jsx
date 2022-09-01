@@ -1,9 +1,11 @@
+import { usaSesionCartContext } from '../../contexts/SesionCartContext'
+
 const InfoProduct = ({ data }) => {
-  let imgUrl = '/assets/img/box.png'
-  if (typeof data.image === 'string') {
-    if (data.image.toString().search('http') !== -1) {
-      imgUrl = data.image
-    }
+  const context = usaSesionCartContext()
+  const CCarrito = [...context.cart]
+  const click = () => {
+    CCarrito.push(data)
+    context.setCart(CCarrito)
   }
 
   return (
@@ -12,7 +14,7 @@ const InfoProduct = ({ data }) => {
         <h4>{data.product_name}</h4>
       </div>
       <div className='col-sm-4 col-12 order-2 d-flex align-items-center justify-content-center'>
-        <img className='img-fluid rounded' src={imgUrl} alt={data.product_name} style={{ maxHeight: '350px' }} />
+        <img className='img-fluid rounded' src={data.image ? data.image : '/assets/img/box.png'} alt={data.product_name} style={{ maxHeight: '350px' }} />
       </div>
       <div className='col-sm-8 col-12 order-3 ps-sm-2 d-flex flex-column'>
         <div className='col-12 order-1 d-flex pb-sm-4 pb-2 pt-3 pt-sm-0'>
@@ -28,7 +30,7 @@ const InfoProduct = ({ data }) => {
             <h5>{`$${data.price}`}</h5>
           </div>
           <div className='col-sm-4 col-12 d-flex flex-column'>
-            <button type='button' className='btn btn-warning rounded-pill p-1'>Agregar al carrito</button>
+            <button type='button' className='btn btn-warning rounded-pill p-1' onClick={click}>Agregar al carrito</button>
             <button type='button' className='btn btn-warning rounded-pill p-1 disabled mt-2'>Comprar ya</button>
           </div>
         </div>

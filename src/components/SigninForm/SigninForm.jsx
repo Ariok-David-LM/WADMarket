@@ -12,6 +12,7 @@ const SigninForm = () => {
     try {
       const result = await LoginUser(data)
       if (result.status === 200) {
+        console.log(result.data.token)
         loginUser(result.data.token)
         navigate('/WADMarket/products/')
       }

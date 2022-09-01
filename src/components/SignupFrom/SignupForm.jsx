@@ -9,7 +9,7 @@ const SignupForm = () => {
     try {
       const result = await RegisterUser(data)
       if (result.status === 200) {
-        navigate('/WADMarket/products/')
+        navigate('/WADMarket/user/signin')
       }
     } catch (error) {
       alert('Ocurrió un error: ' + error.message)

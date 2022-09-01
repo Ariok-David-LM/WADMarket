@@ -8,6 +8,6 @@ const config = {
 
 const RegisterUser = (data) => axios.post(`${BASE_URL}/signup`, data)
 const LoginUser = (data) => axios.post(`${BASE_URL}/login`, data)
-const getSingleUser = (id) => axios.get(`${BASE_URL}/user/${id}`, config)
+const getSingleUser = async (id) => await axios.get(`${BASE_URL}/user/${id}`, config)
 
 export { RegisterUser, LoginUser, getSingleUser }
