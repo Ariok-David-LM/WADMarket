@@ -14,7 +14,7 @@ const InfoProduct = ({ data }) => {
         <h4>{data.product_name}</h4>
       </div>
       <div className='col-sm-4 col-12 order-2 d-flex align-items-center justify-content-center'>
-        <img className='img-fluid rounded' src={data.image ? data.image : '/assets/img/box.png'} alt={data.product_name} style={{ maxHeight: '350px' }} />
+        <img className='img-fluid rounded' src={data.image ? data.image : '/WADMarket/assets/img/box.png'} alt={data.product_name} style={{ maxHeight: '350px' }} />
       </div>
       <div className='col-sm-8 col-12 order-3 ps-sm-2 d-flex flex-column'>
         <div className='col-12 order-1 d-flex pb-sm-4 pb-2 pt-3 pt-sm-0'>

@@ -2,19 +2,15 @@ import { useContext } from 'react'
 import useForm from '../../hooks/useForm'
 import { LoginUser } from '../../services/UserServices'
 import { AuthContext } from '../../contexts/Auth'
-import { useNavigate } from 'react-router-dom'
 
 const SigninForm = () => {
   const { loginUser } = useContext(AuthContext)
-  const navigate = useNavigate()
 
   const sendData = async (data) => {
     try {
       const result = await LoginUser(data)
       if (result.status === 200) {
-        console.log(result.data.token)
         loginUser(result.data.token)
-        navigate('/WADMarket/products/')
       }
     } catch (error) {
       alert('Ocurrió un error: ' + error.message)

@@ -4,7 +4,7 @@ import { usaProductContext } from '../../contexts/ProductContext'
 const CardProduct = ({ product }) => {
   const context = usaProductContext()
 
-  let imgUrl = '/assets/img/box.png'
+  let imgUrl = '/WADMarket/assets/img/box.png'
   if (typeof product.image === 'string') {
     if (product.image.toString().search('http') !== -1) {
       imgUrl = product.image

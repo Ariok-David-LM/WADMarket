@@ -35,7 +35,7 @@ const Navbar = () => {
       <div className='container-fluid d-flex'>
         <div className='container-fluid col-sm-3 col-6 order-1' href='#'>
           <Link to='/WADMarket/products' className='navbar-brand'>
-            <img src='/assets/img/online-shopping.png' width={30} height={24} />
+            <img src='/WADMarket/assets/img/online-shopping.png' width={30} height={24} />
             WADMarket
           </Link>
         </div>
@@ -46,7 +46,7 @@ const Navbar = () => {
         <div className='d-flex justify-content-end container-fluid order-sm-3 order-2 col-sm-3 col-6'>
           <div>
             <button className='btn p-0 m-0 pe-2' type='button' id='dropdownMenuButton1' aria-expanded='false' onClick={click} style={{ border: 'none' }}>
-              <img src='/assets/img/shopping-basket.png' width={39} />
+              <img src='/WADMarket/assets/img/shopping-basket.png' width={39} />
             </button>
             <ul className={`dropdown-menu dropdown-menu-end me-4 ${botonCarro ? 'show' : ''}`} style={{ right: '40px', top: '55px', maxHeight: '300px', overflow: 'auto' }}>
               {carritoItems.cart.map((product) => (
@@ -66,13 +66,13 @@ const Navbar = () => {
                         carritoItems.setCart(totales)
                       }}
                     >
-                      <img src='/assets/img/cross.png' alt='eliminar' width='20px' />
+                      <img src='/WADMarket/assets/img/cross.png' alt='eliminar' width='20px' />
                     </div>
                   </div>
                 </li>
               ))}
             </ul>
-            {isAuth ? <ButonsStarted admin={isAuth} /> : <ButonsNoStarted />}
+            {isAuth ? <ButonsStarted /> : <ButonsNoStarted />}
           </div>
         </div>
       </div>

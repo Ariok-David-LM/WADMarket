@@ -5,7 +5,7 @@ const ButonsNoStarted = () => {
   return (
     <>
       <button className='btn p-0 m-0 pe-2' type='button' id='dropdownMenuButton1' data-bs-toggle='dropdown' aria-expanded='false' style={{ border: 'none' }}>
-        <img src='/assets/img/enter.png' width={39} />
+        <img src='/WADMarket/assets/img/enter.png' width={39} />
       </button>
       <ul className='dropdown-menu dropdown-menu-end me-4' aria-labelledby='dropdownMenuButton1'>
         <li>

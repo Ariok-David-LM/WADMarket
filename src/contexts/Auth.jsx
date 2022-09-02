@@ -6,7 +6,8 @@ export const AuthContext = createContext()
 
 export function AuthProvider (props) {
   const [isAuth, setIsAuth] = useState(false)
-  const [user, setUser] = useState(null) // Info del usuario descrifrado
+  const [user, setUser] = useState(null)
+  const [dataState, setDataState] = useState({}) // Info del usuario descrifrado
 
   const loginUser = (token) => {
     window.sessionStorage.setItem('token', token)
@@ -22,7 +23,6 @@ export function AuthProvider (props) {
 
   useEffect(() => {
     const token = window.sessionStorage.getItem('token')
-
     if (token) {
       setIsAuth(true)
       const decoded = jwt_decode(token) // Decodifico el JWT y lo guardo en un objeto de JS
@@ -34,7 +34,9 @@ export function AuthProvider (props) {
     isAuth,
     loginUser,
     logout,
-    user
+    user,
+    dataState,
+    setDataState
   }
 
   return (

@@ -10,7 +10,6 @@ function useForm (callback, defaults) {
   const handleInputChange = (event) => {
     const name = event.target.name
     const value = event.target.value
-
     setInput({ ...input, [name]: value })
   }
 
